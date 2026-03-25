@@ -43,9 +43,15 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> findById(@PathVariable Long id, @RequestBody ProductDTO productDTO)
-    {
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO)    {
         productDTO = productService.update(id, productDTO);
         return ResponseEntity.ok(productDTO);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id)
+    {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
